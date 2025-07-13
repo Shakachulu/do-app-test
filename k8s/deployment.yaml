@@ -1,0 +1,22 @@
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foodtheme-sender
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: foodtheme
+  template:
+    metadata:
+      labels:
+        app: foodtheme
+    spec:
+      containers:
+      - name: app
+        image: registry.digitalocean.com/food-registry/foodtheme-app:latest
+        envFrom:
+          - secretRef:
+              name: foodtheme-secret
+

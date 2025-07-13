@@ -1,0 +1,13 @@
+# k8s/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: foodtheme-lb
+spec:
+  type: LoadBalancer
+  selector:
+    app: foodtheme  # must match your deployment's label
+  ports:
+    - protocol: TCP
+      port: 80           # public IP port
+      targetPort: 8000   # internal container port
